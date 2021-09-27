@@ -5,6 +5,7 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const adminRouter = require('./routes/adminRoutes');
+const disponibilityRouter = require('./routes/disponibilityRoutes');
 
 
 //const userRouter = require('./routes/userRoutes');
@@ -26,11 +27,11 @@ app.use((req, res, next) => {
 /*ROUTERS*/
 app.use('/api/login', authenticationRouter);
 app.use('/api/admin', adminRouter);
+app.use(`/heartbeat*/_search`, disponibilityRouter);
 
 
 //ROUTE HANDLER; validator
 app.all('*', (req, res, next) => {
-
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 })
 
