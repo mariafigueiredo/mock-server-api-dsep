@@ -4,6 +4,6 @@ const bytesIngestedController = require('../controllers/bytesIngestedController'
 
 const router = express.Router();
 
-router.route('').get(bytesIngestedController.getBytes);
+router.route('').post(bytesIngestedController.getBytes);
 
 module.exports = router;

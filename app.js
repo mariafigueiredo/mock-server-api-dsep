@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 /*ROUTERS*/
 app.use('/api/login', authenticationRouter);
 app.use('/api/admin', adminRouter);
-app.use('/monitor/heartbeat*/_search/', disponibilityRouter);
+app.use('/monitor/heartbeat*/_search', disponibilityRouter);
 app.use('/monitor/filebeat*/_search', bytesIngestedRouter);
 
 

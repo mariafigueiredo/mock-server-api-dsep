@@ -2,6 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.getBytes = catchAsync(async (req, res, next) => {
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>', req.body)
   if (!req.body) {
     return next(new AppError('Please provide a body with parameters to range the disponibility', 400));
   }
