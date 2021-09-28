@@ -6,8 +6,14 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide a body with parameters to range the disponibility', 400));
   }
 
+  const getDateFilter = req.body.query.bool.filter[1].range['@timestamp'].gte;
+
+  if (!getDateFilter) {
+    return next(new AppError('Please provide a time interval (by day, month or year)', 400));
+  }
+
   let valueToReturn = {};
-  if (req.body.query.bool.filter[1].range['@timestamp'].gte === 'now-1d/d') {
+  if (getDateFilter === 'now-1d/d') {
 
     valueToReturn = {
       "took": 2,
@@ -83,9 +89,9 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
         }
       }
     }
-  } else if (req.body.query.bool.filter[1].range['@timestamp'].gte === 'now-1m/m') {
+  } else if (getDateFilter === 'now-1m/m' || getDateFilter === 'now-1M/M') {
     valueToReturn = {
-      "took": 36,
+      "took": 39,
       "timed_out": false,
       "_shards": {
         "total": 5,
@@ -107,60 +113,60 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
           "sum_other_doc_count": 0,
           "buckets": [{
               "key": "adapter-allbesmart",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
                 "value": 1.0
               }
             },
             {
               "key": "adapter-it-veolia-transdev",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
                 "value": 1.0
               }
             },
             {
               "key": "devo-adapter-reader",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
-                "value": 0.9994746059544658
+                "value": 0.9994840928632847
               }
             },
             {
               "key": "dseptest",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
-                "value": 0.9985113835376532
+                "value": 0.9985382631126397
               }
             },
             {
               "key": "dsepcovilha",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
-                "value": 0.9970227670753065
+                "value": 0.9970765262252794
               }
             },
             {
               "key": "adapter-ALB-environment",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
-                "value": 0.9968476357267951
+                "value": 0.9969045571797076
               }
             },
             {
               "key": "devo-adapter-writer",
-              "doc_count": 11420,
+              "doc_count": 11630,
               "1": {
-                "value": 0.5286339754816112
+                "value": 0.5371453138435082
               }
             }
           ]
         }
       }
     }
-  } else if (req.body.query.bool.filter[1].range['@timestamp'].gte === 'now-1y/y') {
+  } else if (getDateFilter === 'now-1y/y') {
     valueToReturn = {
-      "took": 13,
+      "took": 2,
       "timed_out": false,
       "_shards": {
         "total": 5,
@@ -182,51 +188,51 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
           "sum_other_doc_count": 0,
           "buckets": [{
               "key": "adapter-allbesmart",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
                 "value": 1.0
               }
             },
             {
               "key": "adapter-it-veolia-transdev",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
                 "value": 1.0
               }
             },
             {
               "key": "devo-adapter-reader",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
-                "value": 0.9998225602027884
+                "value": 0.9998234952974104
               }
             },
             {
               "key": "dseptest",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
-                "value": 0.9940177439797212
+                "value": 0.99404927002698
               }
             },
             {
               "key": "dsepcovilha",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
-                "value": 0.9803041825095057
+                "value": 0.9804079780125571
               }
             },
             {
               "key": "adapter-ALB-environment",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
-                "value": 0.979467680608365
+                "value": 0.9795758844146347
               }
             },
             {
               "key": "devo-adapter-writer",
-              "doc_count": 39450,
+              "doc_count": 39659,
               "1": {
-                "value": 0.3886438529784537
+                "value": 0.3918656547063718
               }
             }
           ]
@@ -235,9 +241,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
     }
   } else {
     return next(new AppError(`unit [Y] not supported for date math [${req.body.query.bool.filter[1].range['@timestamp'].gte}]`, 400));
-
   }
-
 
 
   res.status(200).json({
@@ -245,7 +249,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
     results: 1,
     requestTime: req.requestTime,
     data: {
-      result: valueToReturn
+      valueToReturn
     },
   });
 

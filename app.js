@@ -6,6 +6,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const adminRouter = require('./routes/adminRoutes');
 const disponibilityRouter = require('./routes/disponibilityRoutes');
+const bytesIngestedRouter = require('./routes/bytesIngestedRoutes');
 
 
 //const userRouter = require('./routes/userRoutes');
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 app.use('/api/login', authenticationRouter);
 app.use('/api/admin', adminRouter);
 app.use(`/heartbeat*/_search`, disponibilityRouter);
+app.use(`/filebeat*/_search`, bytesIngestedRouter);
 
 
 //ROUTE HANDLER; validator
