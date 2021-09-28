@@ -13,12 +13,12 @@ exports.getBytes = catchAsync(async (req, res, next) => {
 
   let valueToReturn = {};
 
-  const getByValue = req.body.aggs["2"].terms.field;
-  const getPerValue = req.body.aggs["2"].aggs["3"].terms.field;
+  const getPerValue = req.body.aggs["2"].terms.field;
+  const getByValue = req.body.aggs["2"].aggs["3"].terms.field;
 
   console.log("getByValue\t", getByValue, "\ngetPerValue \t", getPerValue)
 
-  if (getByValue === "tenant" && getPerValue === "domain") {
+  if (getPerValue === "tenant" && getByValue === "domain") {
     valueToReturn = {
       "took": 9,
       "timed_out": false,
@@ -125,7 +125,7 @@ exports.getBytes = catchAsync(async (req, res, next) => {
       }
     }
   }
-  if (getByValue === "tenant" && getPerValue === "partner") {
+  if (getPerValue === "tenant" && getByValue === "partner") {
     valueToReturn = {
       "took": 21,
       "timed_out": false,
@@ -224,7 +224,7 @@ exports.getBytes = catchAsync(async (req, res, next) => {
       }
     }
   }
-  if (getByValue === "domain" && getPerValue === "partner") {
+  if (getPerValue === "domain" && getByValue === "partner") {
     valueToReturn = {
       "took": 9,
       "timed_out": false,
@@ -332,7 +332,7 @@ exports.getBytes = catchAsync(async (req, res, next) => {
     }
 
   }
-  if (getByValue === "partner" && getPerValue === "device") {
+  if (getPerValue === "partner" && getByValue === "device") {
     valueToReturn = {
       "took": 21,
       "timed_out": false,
@@ -407,7 +407,7 @@ exports.getBytes = catchAsync(async (req, res, next) => {
       }
     }
   }
-  if (getByValue === "partner" && getPerValue === "tenant") {
+  if (getPerValue === "partner" && getByValue === "tenant") {
     valueToReturn = {
       "took": 15,
       "timed_out": false,

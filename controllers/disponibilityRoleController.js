@@ -2,12 +2,11 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.getDisponibility = catchAsync(async (req, res, next) => {
-  if (!req.body) {
+  if (!req.body.query) {
     return next(new AppError('Please provide a body with parameters to range the disponibility', 400));
   }
 
   const getDateFilter = req.body.query.bool.filter[1].range['@timestamp'].gte;
-
   if (!getDateFilter) {
     return next(new AppError('Please provide a time interval (by day, month or year)', 400));
   }
@@ -129,7 +128,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
               "key": "devo-adapter-reader",
               "doc_count": 11630,
               "1": {
-                "value": 0.9994840928632847
+                "value": 0.31
               }
             },
             {
@@ -157,7 +156,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
               "key": "devo-adapter-writer",
               "doc_count": 11630,
               "1": {
-                "value": 0.5371453138435082
+                "value": 0.70
               }
             }
           ]
@@ -190,7 +189,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
               "key": "adapter-allbesmart",
               "doc_count": 39659,
               "1": {
-                "value": 1.0
+                "value": 0.875
               }
             },
             {
@@ -204,7 +203,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
               "key": "devo-adapter-reader",
               "doc_count": 39659,
               "1": {
-                "value": 0.9998234952974104
+                "value": 0.50
               }
             },
             {
@@ -240,7 +239,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
       }
     }
   } else {
-    return next(new AppError(`unit [Y] not supported for date math [${req.body.query.bool.filter[1].range['@timestamp'].gte}]`, 400));
+    return next(new AppError(`unit [Y] not supported for date math [${req.body.data.query.bool.filter[1].range['@timestamp'].gte}]`, 400));
   }
 
 
@@ -248,9 +247,8 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
     status: 'success',
     results: 1,
     requestTime: req.requestTime,
-    data: {
+    data: 
       valueToReturn
-    },
   });
 
 });

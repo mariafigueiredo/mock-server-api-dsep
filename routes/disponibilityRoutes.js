@@ -4,6 +4,6 @@ const disponibilityRoleController = require('../controllers/disponibilityRoleCon
 
 const router = express.Router();
 
-router.route('').get(disponibilityRoleController.getDisponibility);
+router.route('').post(disponibilityRoleController.getDisponibility);
 
 module.exports = router;
