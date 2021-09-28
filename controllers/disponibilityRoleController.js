@@ -89,7 +89,7 @@ exports.getDisponibility = catchAsync(async (req, res, next) => {
         }
       }
     }
-  } else if (getDateFilter === 'now-1m/m' || getDateFilter === 'now-1M/M') {
+  } else if (getDateFilter === 'now-1m/m') {
     valueToReturn = {
       "took": 39,
       "timed_out": false,

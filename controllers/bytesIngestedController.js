@@ -224,8 +224,288 @@ exports.getBytes = catchAsync(async (req, res, next) => {
       }
     }
   }
+  if (getByValue === "domain" && getPerValue === "partner") {
+    valueToReturn = {
+      "took": 9,
+      "timed_out": false,
+      "_shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 8212,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+      },
+      "aggregations": {
+        "2": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [{
+              "key": "Environment",
+              "doc_count": 4108,
+              "1": {
+                "value": 876438.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "qART",
+                  "doc_count": 4108,
+                  "1": {
+                    "value": 876438.0
+                  }
+                }]
+              }
+            },
+            {
+              "key": "Oceanography",
+              "doc_count": 34,
+              "1": {
+                "value": 14094.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "IPMA",
+                  "doc_count": 34,
+                  "1": {
+                    "value": 14094.0
+                  }
+                }]
+              }
+            },
+            {
+              "key": "Waste",
+              "doc_count": 72,
+              "1": {
+                "value": 6889.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                    "key": "Compta",
+                    "doc_count": 2,
+                    "1": {
+                      "value": 5994.0
+                    }
+                  },
+                  {
+                    "key": "Evox",
+                    "doc_count": 70,
+                    "1": {
+                      "value": 895.0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "PPDR",
+              "doc_count": 2,
+              "1": {
+                "value": 3336.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "IPMA",
+                  "doc_count": 2,
+                  "1": {
+                    "value": 3336.0
+                  }
+                }]
+              }
+            }
+          ]
+        }
+      }
+    }
 
-
+  }
+  if (getByValue === "partner" && getPerValue === "device") {
+    valueToReturn = {
+      "took": 21,
+      "timed_out": false,
+      "_shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 8212,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+      },
+      "aggregations": {
+        "2": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [{
+              "key": "qART",
+              "doc_count": 4108,
+              "1": {
+                "value": 876438.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": []
+              }
+            },
+            {
+              "key": "IPMA",
+              "doc_count": 36,
+              "1": {
+                "value": 17430.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": []
+              }
+            },
+            {
+              "key": "Compta",
+              "doc_count": 2,
+              "1": {
+                "value": 5994.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": []
+              }
+            },
+            {
+              "key": "Evox",
+              "doc_count": 70,
+              "1": {
+                "value": 895.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+  if (getByValue === "partner" && getPerValue === "tenant") {
+    valueToReturn = {
+      "took": 15,
+      "timed_out": false,
+      "_shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 8277,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+      },
+      "aggregations": {
+        "2": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [{
+              "key": "qART",
+              "doc_count": 4138,
+              "1": {
+                "value": 882843.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "altice_deo",
+                  "doc_count": 4138,
+                  "1": {
+                    "value": 882843.0
+                  }
+                }]
+              }
+            },
+            {
+              "key": "IPMA",
+              "doc_count": 37,
+              "1": {
+                "value": 17846.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "solarsense",
+                  "doc_count": 37,
+                  "1": {
+                    "value": 17846.0
+                  }
+                }]
+              }
+            },
+            {
+              "key": "Compta",
+              "doc_count": 2,
+              "1": {
+                "value": 5994.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "sharingcities",
+                  "doc_count": 2,
+                  "1": {
+                    "value": 5994.0
+                  }
+                }]
+              }
+            },
+            {
+              "key": "Evox",
+              "doc_count": 70,
+              "1": {
+                "value": 895.0
+              },
+              "3": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [{
+                  "key": "CMCasteloBranco",
+                  "doc_count": 70,
+                  "1": {
+                    "value": 895.0
+                  }
+                }]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
 
   res.status(200).json({
     status: 'success',
